@@ -1,4 +1,4 @@
-version: '3.2.2'  # version of compose format 
+version: '3.2'  # version of compose format 
 
 services:
   user-service:
@@ -19,3 +19,15 @@ services:
     build: ./VendorServices
     ports:
       - 5004:80
+  web:
+    build:
+      context: ./Web
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=production
+      - COMPOSE_CONVERT_WINDOWS_PATHS=1
+    command: npm start
+    ports:
+      - 3000:3000
+    volumes:
+      - ./Web:/app
