@@ -1,0 +1,21 @@
+version: '3.2.2'  # version of compose format 
+
+services:
+  user-service:
+    build: ./UserServices  # path is relative to docker-compose.yml localtion
+    volumes:
+      - ./UserServices:/usr/src/app # mount point
+    ports:
+      - 5001:80  # host:container
+  common-ml-service:
+    build: ./CommonMLServices
+    ports:
+      - 5002:80
+  musician-service:
+    build: ./MusicianServices
+    ports:
+      - 5003:80
+  vendor-service:
+    build: ./VendorServices
+    ports:
+      - 5004:80
